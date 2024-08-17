@@ -1,0 +1,16 @@
+- hosts: all
+  tasks:
+    - name: install apache
+      yum: name=httpd state=present
+
+
+    - name: start apache
+      service: name=httpd status=started
+      tags: a
+    - name: install git
+      yum: name=git state=present
+
+    - name: git checkout
+      git:
+        repo: "https://github.com/devaraj2002/netflix-ansible-project.git"
+        dest: "/var/www/html/"
